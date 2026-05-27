@@ -10,10 +10,12 @@
     "typescript": "^5"
   },
   "scripts": {
+    "dev": "bun run packages/server.ts",
     "prepare": "effect-language-service patch",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "effect": "^4.0.0-beta.66"
+    "@effect/platform-bun": "^4.0.0-beta.71",
+    "effect": "^4.0.0-beta.71"
   }
 }
