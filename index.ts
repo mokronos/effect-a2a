@@ -1,9 +1,8 @@
-import { Effect } from "effect"
-
-const program = Effect.gen(function* () {
-    const data = yield* Effect.succeed("hello world")
-    yield* Effect.logInfo(`Processing data: ${data}`)
-    return data.toUpperCase()
-});
-
-Effect.runSync(program);
+export * from "./packages/agent"
+export * from "./packages/core-schema"
+export * from "./packages/task-store"
+export * from "./packages/utils"
+export * from "./packages/server"
+export * from "./packages/bindings/json-rpc/client"
+export * from "./packages/bindings/json-rpc/schema"
+export * from "./packages/bindings/json-rpc/server"

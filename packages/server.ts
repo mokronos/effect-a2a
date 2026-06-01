@@ -1,14 +1,9 @@
-import { getTasks } from "./handlers";
-import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
-import { Effect, Layer } from "effect";
-import { HttpRouter, HttpServer, HttpServerResponse } from "effect/unstable/http";
+import { Layer } from "effect"
+import { HttpRouter } from "effect/unstable/http"
+import { makeJsonRpcRouter } from "./bindings/json-rpc/server"
 
-const App = HttpRouter.add("GET", "/tasks",
-                           HttpServerResponse.json(getTasks)
-).pipe(HttpRouter.serve, HttpServer.withLogAddress)
-
-const port = 11111
-
-const ServerLive = BunHttpServer.layer({ port })
-
-BunRuntime.runMain(Layer.launch(Layer.provide(App, ServerLive)))
+export const makeJsonRpcServerLayer = (agentLayer: Layer.Layer<never>) =>
+  makeJsonRpcRouter.pipe(
+    HttpRouter.serve,
+    Layer.provide(agentLayer),
+  )

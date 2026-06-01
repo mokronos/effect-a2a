@@ -10,7 +10,9 @@
     "typescript": "^5"
   },
   "scripts": {
-    "dev": "bun run packages/server.ts",
+    "dev": "bun run examples/server.ts",
+    "example:server": "bun run examples/server.ts",
+    "example:client": "bun run examples/client.ts",
     "prepare": "effect-language-service patch",
     "typecheck": "tsc --noEmit"
   },
